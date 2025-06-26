@@ -74,7 +74,7 @@
       <configuration>
         <systemPropertyVariables>
           <browser>chrome</browser>
-          <base.url>https://wishlist.otus.kartushin.su/wishlists/</base.url>
+          <base.url>https://wishlist.otus.kartushin.su</base.url>
         </systemPropertyVariables>
       </configuration>
     </plugin>
