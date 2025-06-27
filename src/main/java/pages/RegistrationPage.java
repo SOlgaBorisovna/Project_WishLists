@@ -27,12 +27,12 @@ public class RegistrationPage extends AbsBasePage {
     }
 
     public void checkSubmit(User user) {
-        //JavascriptExecutor js = (JavascriptExecutor) driver;
-        //String result = (String)js.executeScript("return document.querySelector('button[type=submit]').click()");
-
-        //Allert(result == "Пользователь успешно зарегистрирован");
-
         WebElement registrationBtn = driver.findElement(By.cssSelector("button[type=submit]"));
         registrationBtn.click();
+        registrationBtn = driver.findElement(By.cssSelector("button[type=submit]"));
+
+        assertThat(registrationBtn)
+                .as("Кнопка регистрации должна отсутсвовать при успешной регистрации")
+                .isEqualTo(null);
     }
 }

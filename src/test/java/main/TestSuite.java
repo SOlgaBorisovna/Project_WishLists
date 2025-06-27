@@ -3,11 +3,11 @@ package main;
 import dto.BrowserNameData;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
+import pages.LoginPage;
 import pages.RegistrationPage;
 
 
 public class TestSuite extends AbsBaseSuite{
-
     @ParameterizedTest
     @EnumSource(value = BrowserNameData.class, names = {"CHROME", "EDGE"})
     public void checkRegistrationBtn(BrowserNameData name) {
@@ -19,5 +19,18 @@ public class TestSuite extends AbsBaseSuite{
         registrationPage.checkSubmit(user);
         logger.info("Finish test checkRegistrationBtn");
     }
+
+    @ParameterizedTest
+    @EnumSource(value = BrowserNameData.class, names = {"CHROME", "EDGE"})
+    public void checkLoginBtn(BrowserNameData name) {
+        logger.info("Run test checkLoginBtn");
+        init(name);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open("/login");
+        loginPage.fillValuesLoginPage();
+        loginPage.checkSubmit();
+        logger.info("Finish test checkLoginBtn");
+    }
+
 }
 
