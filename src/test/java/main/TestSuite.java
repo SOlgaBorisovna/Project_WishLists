@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import pages.LoginPage;
 import pages.RegistrationPage;
+import pages.WishListPage;
 
 
 public class TestSuite extends AbsBaseSuite{
@@ -32,5 +33,18 @@ public class TestSuite extends AbsBaseSuite{
         logger.info("Finish test checkLoginBtn");
     }
 
+    @ParameterizedTest
+    @EnumSource(value = BrowserNameData.class, names = {"CHROME", "EDGE"})
+    public void checkWishList(BrowserNameData name) {
+        logger.info("Run test checkWishList");
+        init(name);
+        WishListPage loginPage = new WishListPage(driver);
+        loginPage.open("/login");
+        loginPage.login();
+        loginPage.addWishList(user);
+        loginPage.viewWishList();
+        loginPage.deleteWishList();
+        logger.info("Finish test checkWishList");
+    }
 }
 

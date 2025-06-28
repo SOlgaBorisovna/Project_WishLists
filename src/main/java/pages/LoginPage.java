@@ -1,15 +1,11 @@
 package pages;
 
-import dto.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.JavascriptExecutor;
 import properties.FilePropertyReader;
 
-import java.sql.DriverManager;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -31,14 +27,19 @@ public class LoginPage extends AbsBasePage {
     }
 
     public void checkSubmit() {
-        String oldUrl = driver.getCurrentUrl();
         WebElement loginBtn = driver.findElement(By.cssSelector("button[type=submit]"));
         loginBtn.click();
-        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        String newUrl = driver.getCurrentUrl();
 
-        assertThat(newUrl)
-                .as("При успешной авторизации должен осуществиться переход на другую страницу")
-                .isNotEqualTo(oldUrl);
+        String result = "error";
+        try {
+            WebElement allert = driver.findElement(By.cssSelector("div[class='fade alert alert-danger show']"));
+        }
+        catch (Exception e) {
+            result = "valid";
+        }
+
+        assertThat(result)
+                .as("При успешной авторизации не должно быть сообщения об ошибке")
+                .isEqualTo("valid");
     }
 }
