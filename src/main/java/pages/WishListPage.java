@@ -100,7 +100,7 @@ public class WishListPage extends AbsBasePage{
 
         listBtn = driver.findElement(By.cssSelector("a[href='/wishlists']"));
         listBtn.click();
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         elements = driver.findElements(By.cssSelector("div[class='card-body']"));
 
         assertThat(elements.size())

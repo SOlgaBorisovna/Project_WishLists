@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import properties.FilePropertyReader;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -29,7 +30,7 @@ public class LoginPage extends AbsBasePage {
     public void checkSubmit() {
         WebElement loginBtn = driver.findElement(By.cssSelector("button[type=submit]"));
         loginBtn.click();
-
+        driver. manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         String result = "error";
         try {
             WebElement allert = driver.findElement(By.cssSelector("div[class='fade alert alert-danger show']"));
@@ -40,6 +41,25 @@ public class LoginPage extends AbsBasePage {
 
         assertThat(result)
                 .as("При успешной авторизации не должно быть сообщения об ошибке")
+                .isEqualTo("valid");
+    }
+
+    public void checkExit() {
+        WebElement exitBtn = driver.findElement(By.cssSelector("a[href=\"#\"]"));
+        exitBtn.click();
+        driver. manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+
+        String result = "valid";
+        try {
+            WebElement text = driver.findElement(By.xpath("//h2[text()='Вход в систему']"));
+        }
+        catch (Exception e)
+        {
+            result = "error";
+        }
+
+        assertThat(result)
+                .as("При успешной регистрации должны перейти на страницу входа в систему")
                 .isEqualTo("valid");
     }
 }

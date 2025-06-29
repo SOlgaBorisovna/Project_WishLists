@@ -30,6 +30,7 @@ public class TestSuite extends AbsBaseSuite{
         loginPage.open("/login");
         loginPage.fillValuesLoginPage();
         loginPage.checkSubmit();
+        loginPage.checkExit();
         logger.info("Finish test checkLoginBtn");
     }
 
