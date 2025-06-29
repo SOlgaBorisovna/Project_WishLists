@@ -41,9 +41,13 @@ public class TestSuite extends AbsBaseSuite{
         init(name);
         WishListPage loginPage = new WishListPage(driver);
         loginPage.open("/login");
+        logger.info("Login");
         loginPage.login();
+        logger.info("Add new wishlist");
         loginPage.addWishList(user);
+        logger.info("View first wishlist");
         loginPage.viewWishList();
+        logger.info("Delete all wishlist");
         loginPage.deleteWishList();
         logger.info("Finish test checkWishList");
     }

@@ -2,7 +2,6 @@ package pages;
 
 import dto.User;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import properties.FilePropertyReader;
@@ -95,12 +94,12 @@ public class WishListPage extends AbsBasePage{
         for(WebElement el : elements) {
             WebElement viewBtn = el.findElement(By.cssSelector("button[class='btn btn-danger']"));
             viewBtn.click();
-            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         }
 
         listBtn = driver.findElement(By.cssSelector("a[href='/wishlists']"));
         listBtn.click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         elements = driver.findElements(By.cssSelector("div[class='card-body']"));
 
         assertThat(elements.size())
