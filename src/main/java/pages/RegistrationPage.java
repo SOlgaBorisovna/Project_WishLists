@@ -27,7 +27,7 @@ public class RegistrationPage extends AbsBasePage {
         password.sendKeys(user.getPassword() );
     }
 
-    public void checkSubmit(User user) {
+    public void checkSubmit() {
         WebElement registrationBtn = driver.findElement(By.cssSelector("button[type=submit]"));
         registrationBtn.click();
 

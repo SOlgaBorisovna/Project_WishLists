@@ -17,7 +17,7 @@ public class TestSuite extends AbsBaseSuite{
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.open("/register");
         registrationPage.fillValues(user);
-        registrationPage.checkSubmit(user);
+        registrationPage.checkSubmit();
         logger.info("Finish test checkRegistrationBtn");
     }
 
