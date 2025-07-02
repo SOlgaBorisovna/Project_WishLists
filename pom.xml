@@ -74,6 +74,8 @@
       <configuration>
         <systemPropertyVariables>
           <browser>chrome</browser>
+          <user></user>
+          <password></password>
           <base.url>https://wishlist.otus.kartushin.su</base.url>
         </systemPropertyVariables>
       </configuration>

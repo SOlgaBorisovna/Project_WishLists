@@ -4,9 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import properties.FilePropertyReader;
-
-import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -18,12 +15,11 @@ public class LoginPage extends AbsBasePage {
 
     public void fillValuesLoginPage()
     {
-        Map<String, String> settings = new FilePropertyReader().getSettings();
-        String loginStr = settings.get("login");
+        String loginStr = System.getProperty("user");
         WebElement name = driver.findElement(By.cssSelector("input[type = text]"));
         name.sendKeys(loginStr);
         WebElement password = driver.findElement(By.cssSelector("input[type = password]"));
-        String passwordStr = settings.get("password");
+        String passwordStr = System.getProperty("password");
         password.sendKeys(passwordStr);
     }
 
