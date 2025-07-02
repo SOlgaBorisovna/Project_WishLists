@@ -11,10 +11,9 @@ import org.openqa.selenium.WebDriver;
 public abstract class AbsBaseSuite {
     protected static final Logger logger = LogManager.getLogger("Suite Logger");
     protected WebDriver driver = null;
-    protected User user = null;
+    protected User user = new User();
 
     protected void init(BrowserNameData name){
-        user = new User();
         driver = WebDriverFactory.create(name);
     }
 

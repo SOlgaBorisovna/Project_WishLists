@@ -3,10 +3,10 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import properties.FilePropertyReader;
 
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -30,36 +30,20 @@ public class LoginPage extends AbsBasePage {
     public void checkSubmit() {
         WebElement loginBtn = driver.findElement(By.cssSelector("button[type=submit]"));
         loginBtn.click();
-        driver. manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        String result = "error";
-        try {
-            WebElement allert = driver.findElement(By.cssSelector("div[class='fade alert alert-danger show']"));
-        }
-        catch (Exception e) {
-            result = "valid";
-        }
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[text()='Мои списки желаний']")));
 
-        assertThat(result)
-                .as("При успешной авторизации не должно быть сообщения об ошибке")
-                .isEqualTo("valid");
+        assertThat(element)
+                .as("При успешной авторизации должны перейти на страницу 'Мои списки желаний'")
+                .isNotEqualTo(null);
     }
 
     public void checkExit() {
         WebElement exitBtn = driver.findElement(By.cssSelector("a[href=\"#\"]"));
         exitBtn.click();
-        driver. manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[text()='Вход в систему']")));
 
-        String result = "valid";
-        try {
-            WebElement text = driver.findElement(By.xpath("//h2[text()='Вход в систему']"));
-        }
-        catch (Exception e)
-        {
-            result = "error";
-        }
-
-        assertThat(result)
-                .as("При успешной регистрации должны перейти на страницу входа в систему")
-                .isEqualTo("valid");
+        assertThat(element)
+                .as("При успешной выходе должны перейти на страницу 'Вход в систему'")
+                .isNotEqualTo("null");
     }
 }

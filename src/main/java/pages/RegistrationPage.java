@@ -5,8 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.JavascriptExecutor;
-
-import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -31,18 +30,11 @@ public class RegistrationPage extends AbsBasePage {
     public void checkSubmit(User user) {
         WebElement registrationBtn = driver.findElement(By.cssSelector("button[type=submit]"));
         registrationBtn.click();
-        driver. manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        String result = "valid";
-        try {
-            WebElement text = driver.findElement(By.xpath("//h2[text()='Вход в систему']"));
-        }
-        catch (Exception e)
-        {
-            result = "error";
-        }
 
-        assertThat(result)
-                .as("При успешной регистрации должны перейти на страницу входа в систему")
-                .isEqualTo("valid");
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[text()='Вход в систему']")));
+
+        assertThat(element)
+                .as("При успешной регистрации должны перейти на страницу 'Вход в систему'")
+                .isNotEqualTo("null");
     }
 }
