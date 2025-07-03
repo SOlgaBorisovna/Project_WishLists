@@ -18,7 +18,8 @@ public class WebDriverFactory {
         AbstractDriverOptions options = null;
         switch (browserNameData) {
             case CHROME: {
-                options = new ChromeOptions();
+                ChromeSettings set = new ChromeSettings();
+                options = set.settings();
                 break;
             }
             case FIREFOX: {

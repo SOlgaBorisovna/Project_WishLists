@@ -16,6 +16,7 @@ public class User {
     {
         name = name + LocalDateTime.now().toString();
     }
+
     public Faker getFaker() {
         return faker;
     }
